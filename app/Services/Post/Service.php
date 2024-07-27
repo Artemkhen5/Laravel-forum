@@ -13,7 +13,11 @@ class Service
     {
         $data['user_id'] = Auth::user()->id;
 
+        $tags = $data['tags'] ?? null;
+        unset($data['tags']);
+
         $post = Post::create($data);
+        $post->tags()->attach($tags);
     }
 
     public function update($post, $data)

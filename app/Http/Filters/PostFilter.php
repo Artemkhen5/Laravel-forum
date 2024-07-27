@@ -10,7 +10,7 @@ class PostFilter extends AbstractFilter
 {
     public const TITLE = 'title';
     public const CONTENT = 'content';
-    public const TOPIC_ID = 'topic_id';
+    public const TAG_ID= 'tag_id';
 
 
     protected function getCallbacks(): array
@@ -18,7 +18,7 @@ class PostFilter extends AbstractFilter
         return [
             self::TITLE => [$this, 'title'],
             self::CONTENT => [$this, 'content'],
-            self::TOPIC_ID => [$this, 'topicId'],
+            self::TAG_ID => [$this, 'tagId'],
         ];
     }
 
@@ -32,8 +32,8 @@ class PostFilter extends AbstractFilter
         $builder->where('content', 'like', "%{$value}%");
     }
 
-    public function topicId(Builder $builder, $value)
+    public function tagId(Builder $builder, $value)
     {
-        $builder->where('topic_id', $value);
+        $builder->where('tag_id', 'in', $value);
     }
 }

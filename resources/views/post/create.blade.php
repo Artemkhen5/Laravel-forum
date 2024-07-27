@@ -12,14 +12,12 @@
             <textarea name="content" id="content" class="form-control"></textarea>
         </div>
         <div class="mb-3">
-            <label for="topic_id" class="form-label">
-                Topic
+            <label class="form-label">
+                Tags:
             </label>
-            <select class="form-select" name="topic_id" id="topic_id">
-                @foreach($topics as $topic)
-                    <option
-{{--                        {{ old('topic_id') == $topic->id ? ' selected': ''}}--}}
-                        value="{{ $topic->id }}">{{ $topic->name }}</option>
+            <select class="form-select" multiple aria-label="multiple select example" name="tags[]">
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->title }}</option>
                 @endforeach
             </select>
         </div>
