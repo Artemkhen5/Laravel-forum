@@ -28,11 +28,11 @@ class PostController extends Controller
     {
         $data = $request->validated();
         $filter = app()->make(PostFilter::class, ['queryParams' => array_filter($data)]);
-        $posts = Post::filter($filter)->orderBy('created_at', 'desc')->paginate(3);
+        $tags = Tag::all();
+        $posts = Post::filter($filter)->orderBy('posts.created_at', 'desc')->paginate(5);
         $user = User::class;
         $comments = Comment::all();
-
-        return view('post.index', compact('posts', 'user', 'comments'));
+        return view('post.index', compact('posts', 'user', 'comments', 'tags'));
     }
 
     public function create()

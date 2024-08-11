@@ -7,12 +7,12 @@
 
         @foreach($comments as $comment)
             <tr>
-                <td>
+                <td class="w-75">
                     <a href="{{ route('post.show', $comment->post_id) }}">
                         {{ $comment->content }}
                     </a>
                 </td>
-                <td>
+                <td class="w-25">
                     <form action="{{ route('profile.comments.destroy', $comment->id) }}" method="post">
                         @csrf
                         @method('delete')

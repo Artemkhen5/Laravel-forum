@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <a href="{{ route('post.index') }}" class="mb-3 d-block">All posts</a>
+    <a href="{{ \Illuminate\Support\Facades\URL::previous() }}" class="mb-3 d-block">Back</a>
     <div class="mb-3">
         <h4>{{ $post->title }}</h4>
         <div>{{ $post->content }}</div>
@@ -23,7 +23,7 @@
             <strong>Comments:</strong>
         </p>
         @foreach($comments as $comment)
-            <div class="card my-3 p-3">
+            <div class="container py-3 border-bottom">
                 <div class="mb-2">
                     <strong>{{ \App\Models\User::find($comment->user_id)->name }}</strong>
                 </div>

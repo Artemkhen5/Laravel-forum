@@ -7,12 +7,12 @@
 
         @foreach($posts as $post)
             <tr>
-                <td>
+                <td class="w-75">
                     <a href="{{ route('post.show', $post->id) }}">
                         {{ $post->title }}
                     </a>
                 </td>
-                <td>
+                <td class="w-25">
                     <form action="{{ route('post.destroy', $post->id) }}" method="post">
                         @csrf
                         @method('delete')

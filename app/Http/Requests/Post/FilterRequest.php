@@ -24,7 +24,7 @@ class FilterRequest extends FormRequest
         return [
             'title' => 'string',
             'content' => 'string',
-            'topic_id' => ''
+            'tag_id' => ''
         ];
     }
 }

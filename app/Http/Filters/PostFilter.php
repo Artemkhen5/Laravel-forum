@@ -4,13 +4,14 @@
 namespace App\Http\Filters;
 
 
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Builder;
 
 class PostFilter extends AbstractFilter
 {
     public const TITLE = 'title';
     public const CONTENT = 'content';
-    public const TAG_ID= 'tag_id';
+    public const TAG = 'tag_id';
 
 
     protected function getCallbacks(): array
@@ -18,7 +19,7 @@ class PostFilter extends AbstractFilter
         return [
             self::TITLE => [$this, 'title'],
             self::CONTENT => [$this, 'content'],
-            self::TAG_ID => [$this, 'tagId'],
+            self::TAG => [$this, 'tagId'],
         ];
     }
 
@@ -34,6 +35,7 @@ class PostFilter extends AbstractFilter
 
     public function tagId(Builder $builder, $value)
     {
-        $builder->where('tag_id', 'in', $value);
+        $value = [$value];
+        $builder->join('post_tag', 'posts.id', '=', 'post_tag.post_id')->whereIn('tag_id', $value);
     }
 }
